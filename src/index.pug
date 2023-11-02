@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+  head
+    include @/layout/head.pug
+
+    title Impulse Design
+
+    link(rel='stylesheet', href=require('@/styles/styles.scss'))
+
+  body
+    #three-js.canvas-outer
+      //canvas
+
+    .page
+      include @/layout/header.pug
+
+      include @/templates/banner.pug
+
+      include @/layout/footer.pug
+
+    //- script(src=require('@/scripts/video.ts')) 
+    script(src=require('./index.ts')) 

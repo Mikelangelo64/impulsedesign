@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkimpulse_design=self.webpackChunkimpulse_design||[]).push([[873],{},s=>{s.O(0,[216,607],(()=>(607,s(s.s=607)))),s.O()}]);

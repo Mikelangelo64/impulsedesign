@@ -1,0 +1,217 @@
+@import '../base';
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 8;
+
+  //background-color: var(--color-black);
+  
+  
+  //.header__container 
+  &__container {
+    position: relative;
+    z-index: 1;
+
+    @include viewport-desktop {
+      padding-top: px-to-rem(30);
+      padding-bottom: px-to-rem(30);
+  
+      @media (min-width: 1601px) {
+        padding-top: px-to-rem(50);
+        padding-bottom: px-to-rem(50);
+      }
+    }
+    
+    @include viewport-tablet {
+      padding-top: px-to-rem(28);
+      padding-bottom: px-to-rem(28);
+    }
+    
+    @include viewport-phone {
+      padding-top: px-to-rem(28);
+      padding-bottom: px-to-rem(28);
+  
+      @media (max-width: 600px) {
+        padding-top: px-to-rem(18);
+        padding-bottom: px-to-rem(18);
+      }
+    }
+  }
+  
+  //.header__wrapper 
+  &__wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    > * + * {
+      @include viewport-tablet-min {
+        margin-left: px-to-rem(40);
+      }
+      @include viewport-phone {
+        margin-left: px-to-rem(24);
+      }
+    }
+  }
+  
+  //.header__logo 
+  &__logo {
+    flex-shrink: 0;
+  }
+  
+  //.header__buttons 
+  &__buttons {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: max-content;
+    display: flex;
+    align-items: center;
+
+    // > * + * {
+    //   margin-left: px-to-rem(16);
+    // }
+  }
+  
+  //.header__menu 
+  &__menu {
+    @include viewport-desktop {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: px-to-rem(682);
+
+      @media (min-width: 1601px) {
+        max-width: px-to-rem(712);
+      }
+    }
+
+    @include viewport-tablet-max {
+      display: none;
+    }
+
+    > * {
+      width: 100%;
+    }
+
+    > * + * {
+      margin-left: px-to-rem(40);
+    }
+  }
+
+  //.header__call 
+  &__call {
+    @include transition(color 0.3s);
+    text-decoration: unset;
+    font-weight: 700;
+
+    &.desktop {
+      @include viewport-desktop {
+        @media (max-width: 1400px) {
+          display: none;
+        }
+      }
+      @include viewport-tablet-max {
+        display: none;
+      }
+    }
+
+    &.tablet {
+      display: none;
+
+      @include viewport-desktop {
+        @media (max-width: 1400px) {
+          width: 100%;
+          max-width: px-to-rem(24);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+
+    @include hover-focus-visible {
+      @include non-mobile-device {
+        @include viewport-desktop {
+          color: var(--color-gold);
+        }
+        @include viewport-tablet-max {
+          color: var(--color-white);
+        }
+      }
+    }
+
+    @include viewport-desktop {
+      font-size: px-to-rem(15);
+      color: var(--color-white);
+      
+      @media (min-width: 1601px) {
+        font-size: px-to-rem(16);
+      }
+    }
+
+    @include viewport-tablet-max {
+      font-size: px-to-rem(20);
+      color: var(--color-gold);
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.menu__lang {
+  flex-shrink: 0;
+  max-width: max-content;
+  display: flex;
+  align-items: center;
+
+  color: var(--color-white);
+
+  @include viewport-desktop {
+    font-size: px-to-rem(15);
+    font-weight: 400;
+    
+    @media (min-width: 1601px) {
+      font-size: px-to-rem(16);
+    }
+  }
+
+  @include viewport-tablet-max {
+    font-weight: 700;
+    font-size: px-to-rem(20);
+  }
+
+  > * + * {
+    border-left: 1px solid var(--color-gold);
+    margin-left: px-to-rem(8);
+    padding-left: px-to-rem(8);
+  }
+
+  a {
+    opacity: 0.3;
+    @include transition((opacity, 0.3s, color 0.3s));
+    text-decoration: unset;
+
+    @include hover-focus-visible {
+      @include non-mobile-device {
+        opacity: 1;
+        color: var(--color-gold);
+      }
+    }
+  }
+
+  .lang-item {
+    display: flex;
+    align-items: center;
+
+    line-height: 120%;
+    color: inherit;
+  }
+}

@@ -1,0 +1,101 @@
+-
+  const modalList = [
+    {
+      headerLink: {
+        href: '#',
+        name: 'Розробка сайтів',
+      },
+      sublist: [
+        {
+          href: '#',
+          name: 'Сайт-візитка',
+        },
+        {
+          href: '#',
+          name: 'Landing Page',
+        },
+        {
+          href: '#',
+          name: 'Продаючий сайт',
+        },
+        {
+          href: '#',
+          name: 'Інтернет-магазин',
+        },
+        {
+          href: '#',
+          name: 'Корпоративний сайт',
+        },
+        {
+          href: '#',
+          name: 'Ексклюзивний сайт',
+        },
+      ],
+    },
+    {
+      headerLink: {
+        href: '#',
+        name: 'Просування сайтів',
+      },
+      sublist: [
+        {
+          href: '#',
+          name: 'SEO-просування',
+        },
+        {
+          href: '#',
+          name: 'PPC (контекстна реклама)',
+        },
+        {
+          href: '#',
+          name: 'SMM (просування в соцмережах)',
+        },
+        {
+          href: '#',
+          name: 'YouTube',
+        },
+      ],
+    },
+    {
+      headerLink: {
+        href: '#',
+        name: 'Інші послуги',
+      },
+      sublist: [
+        {
+          href: '#',
+          name: 'Доопрацювання сайтів',
+        },
+        {
+          href: '#',
+          name: 'Підтримка сайтів',
+        },
+        {
+          href: '#',
+          name: 'Написання текстів',
+        },
+        {
+          href: '#',
+          name: 'Розробка логотипу',
+        },
+        {
+          href: '#',
+          name: 'Дизайн сайтів',
+        },
+      ],
+    },
+  ];
+
+nav.header-modal
+  ul.header-modal-list
+    each item, index in modalList
+      li.header-modal-list__item
+        .header-modal-list__header
+          .header-modal-list__count= `0${index + 1}`
+
+          a.header-modal__link.header-link(href=`${item.headerLink.href}`)= item.headerLink.name
+
+        ul.header-modal-sublist
+          each link in item.sublist
+            li.header-modal-sublist__item
+              a.header-modal__link(href=`${link.href}`)= link.name

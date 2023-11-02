@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impulse Design</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="canvas-outer" id="three-js"><!--canvas--></div>
+    <div class="page">
+      <header class="header">
+        <div class="_container header__container">
+          <div class="header__wrapper"><a class="logo-link header__logo popup-open" data-popup="_popup-header-modal"
+              href="#"> <img src="assets/img/logo.svg" alt="logo" draggable="false"></a>
+            <nav class="menu header__menu">
+              <ul class="menu-list">
+                <li class="menu-list__item modal-open"><a class="menu__link" href="#">Послуги</a></li>
+                <li class="menu-list__item"><a class="menu__link" href="#">Портфоліо</a></li>
+                <li class="menu-list__item"><a class="menu__link" href="#">Блог</a></li>
+                <li class="menu-list__item"><a class="menu__link" href="#">Про нас</a></li>
+                <li class="menu-list__item"><a class="menu__link" href="#">Відгуки</a></li>
+                <li class="menu-list__item"><a class="menu__link" href="#">Контакти</a></li>
+              </ul>
+              <ul class="menu__lang">
+                <li>
+                  <p class="lang-item lang-item-current">Ua</p>
+                </li>
+                <li><a class="lang-item" href="#">En</a></li>
+              </ul>
+            </nav>
+            <div class="header__buttons"><a class="header__call desktop" href="tel:+380930558669">+38 093 055 86
+                69</a><a class="header__call tablet" href="tel:+380930558669"> <svg xmlns="http://www.w3.org/2000/svg"
+                  width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M20.6789 16.704C19.2291 15.464 17.7577 14.7128 16.3257 15.951L15.4706 16.6993C14.8449 17.2425 13.6817 19.7807 9.1842 14.607C4.68766 9.43986 7.36348 8.63533 7.99006 8.0968L8.84984 7.34753C10.2744 6.10655 9.73679 4.54433 8.70936 2.93621L8.08934 1.96216C7.05722 0.35779 5.93332 -0.695869 4.50502 0.543234L3.73328 1.21758C3.10202 1.67744 1.33749 3.17223 0.909472 6.01196C0.39435 9.41925 2.01933 13.3211 5.74225 17.6022C9.4605 21.8852 13.101 24.0365 16.5495 23.9991C19.4155 23.9682 21.1463 22.4303 21.6876 21.8712L22.4622 21.1959C23.8867 19.9577 23.0016 18.6971 21.5509 17.4542L20.6789 16.704Z"
+                    fill="currentColor" />
+                </svg></a><button class="menu-burger popup-open" data-popup="_popup-menu"></button><button
+                class="menu-burger popup-open _opened" data-popup="_popup-form"></button></div>
+          </div>
+        </div>
+        <div class="popup popup-header-modal header-modal__popup " data-popupname="_popup-header-modal"
+          aria-modal="true" role="dialog">
+          <div class="popup__overlay"></div>
+          <div class="popup__additional"></div>
+          <div class="popup__scroll">
+            <div class="popup__wrapper"><button class="popup__close hidden"><img src="assets/img/popup-close.svg"
+                  alt="close"></button>
+              <div class="popup__content">
+                <nav class="header-modal">
+                  <ul class="header-modal-list">
+                    <li class="header-modal-list__item">
+                      <div class="header-modal-list__header">
+                        <div class="header-modal-list__count">01</div><a class="header-modal__link header-link"
+                          href="#">Розробка сайтів</a>
+                      </div>
+                      <ul class="header-modal-sublist">
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">Сайт-візитка</a>
+                        </li>
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">Landing Page</a>
+                        </li>
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">Продаючий сайт</a>
+                        </li>
+                        <li class="header-modal-sublist__item"><a class="header-modal__link"
+                            href="#">Інтернет-магазин</a></li>
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">Корпоративний
+                            сайт</a></li>
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">Ексклюзивний
+                            сайт</a></li>
+                      </ul>
+                    </li>
+                    <li class="header-modal-list__item">
+                      <div class="header-modal-list__header">
+                        <div class="header-modal-list__count">02</div><a class="header-modal__link header-link"
+                          href="#">Просування сайтів</a>
+                      </div>
+                      <ul class="header-modal-sublist">
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">SEO-просування</a>
+                        </li>
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">PPC (контекстна
+                            реклама)</a></li>
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">SMM (просування в
+                            соцмережах)</a></li>
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">YouTube</a></li>
+                      </ul>
+                    </li>
+                    <li class="header-modal-list__item">
+                      <div class="header-modal-list__header">
+                        <div class="header-modal-list__count">03</div><a class="header-modal__link header-link"
+                          href="#">Інші послуги</a>
+                      </div>
+                      <ul class="header-modal-sublist">
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">Доопрацювання
+                            сайтів</a></li>
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">Підтримка
+                            сайтів</a></li>
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">Написання
+                            текстів</a></li>
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">Розробка
+                            логотипу</a></li>
+                        <li class="header-modal-sublist__item"><a class="header-modal__link" href="#">Дизайн сайтів</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup popup-menu menu__popup " data-popupname="_popup-menu" aria-modal="true" role="dialog">
+          <div class="popup__overlay"></div>
+          <div class="popup__additional"></div>
+          <div class="popup__scroll">
+            <div class="popup__wrapper"><button class="popup__close hidden"><img src="assets/img/popup-close.svg"
+                  alt="close"></button>
+              <div class="popup__content">
+                <div class="modal-menu__header"><a class="header__call" href="tel:+380930558669">+38 093 055 86
+                    69</a><button class="popup__close"><img src="assets/img/popup-close.svg" alt="close"></button></div>
+                <div class="modal-menu__main">
+                  <nav class="menu">
+                    <ul class="menu-list">
+                      <li class="menu-list__item"><a class="menu__link anchor" href="#" data-goto="">Послуги</a>
+                        <ul class="menu-submenu accordion" data-is-label-click="true">
+                          <li class="menu-submenu__item accordion__item">
+                            <div class="menu-submenu__header"><a class="menu-submenu__link" href="#">Розробка
+                                сайтів</a><button class="accordion__label"></button></div>
+                            <div class="accordion__details">
+                              <ul class="menu-submenu-list accordion__description">
+                                <li><a class="menu-submenu__link" href="#">Сайт-візитка</a></li>
+                                <li><a class="menu-submenu__link" href="#">Landing Page</a></li>
+                                <li><a class="menu-submenu__link" href="#">Інтернет-магазин</a></li>
+                                <li><a class="menu-submenu__link" href="#">Корпоративний сайт</a></li>
+                                <li><a class="menu-submenu__link" href="#">Ексклюзивний сайт</a></li>
+                              </ul>
+                            </div>
+                          </li>
+                          <li class="menu-submenu__item accordion__item">
+                            <div class="menu-submenu__header"><a class="menu-submenu__link" href="#">Просування
+                                сайтів</a><button class="accordion__label"></button></div>
+                            <div class="accordion__details">
+                              <ul class="menu-submenu-list accordion__description">
+                                <li><a class="menu-submenu__link" href="#">SEO-просування</a></li>
+                                <li><a class="menu-submenu__link" href="#">PPC (контекстна реклама)</a></li>
+                                <li><a class="menu-submenu__link" href="#">SMM (просування в соцмережах)</a></li>
+                                <li><a class="menu-submenu__link" href="#">YouTube</a></li>
+                              </ul>
+                            </div>
+                          </li>
+                          <li class="menu-submenu__item accordion__item">
+                            <div class="menu-submenu__header"><a class="menu-submenu__link" href="#">Інші
+                                послуги</a><button class="accordion__label"></button></div>
+                            <div class="accordion__details">
+                              <ul class="menu-submenu-list accordion__description">
+                                <li><a class="menu-submenu__link" href="#">Доопрацювання сайтів</a></li>
+                                <li><a class="menu-submenu__link" href="#">Підтримка сайтів</a></li>
+                                <li><a class="menu-submenu__link" href="#">Написання текстів</a></li>
+                                <li><a class="menu-submenu__link" href="#">Розробка логотипу</a></li>
+                                <li><a class="menu-submenu__link" href="#">Дизайн сайтів</a></li>
+                              </ul>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="menu-list__item"><a class="menu__link anchor" href="#" data-goto="">Портфоліо</a></li>
+                      <li class="menu-list__item"><a class="menu__link anchor" href="#" data-goto="">Блог</a></li>
+                      <li class="menu-list__item"><a class="menu__link anchor" href="#" data-goto="">Про нас</a></li>
+                      <li class="menu-list__item"><a class="menu__link anchor" href="#" data-goto="">Відгуки</a></li>
+                      <li class="menu-list__item"><a class="menu__link anchor" href="#" data-goto="">Контакти</a></li>
+                    </ul>
+                  </nav>
+                  <ul class="menu__lang popup-menu-lang">
+                    <li>
+                      <p class="lang-item lang-item-current">Ua</p>
+                    </li>
+                    <li><a class="lang-item" href="#">En</a></li>
+                  </ul><a class="button-dark modal-menu__button" href="#"> <span>Завантажити бриф</span><svg width="24"
+                      height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M8 17L12 21M12 21L16 17M12 21V12M20 16.7428C21.2215 15.734 22 14.2079 22 12.5C22 9.46243 19.5376 7 16.5 7C16.2815 7 16.0771 6.886 15.9661 6.69774C14.6621 4.48484 12.2544 3 9.5 3C5.35786 3 2 6.35786 2 10.5C2 12.5661 2.83545 14.4371 4.18695 15.7935"
+                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg></a>
+                </div>
+                <div class="modal-menu__footer">
+                  <ul class="socials modal-menu__socials">
+                    <li><a class="socials__link" href="#" target="_blank" rel="noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M11.2775 6.3978V4.96573C11.2775 4.26071 11.7173 4.10649 12.0314 4.10649C12.3455 4.10649 13.9581 4.10649 13.9581 4.10649V1.02203L11.2984 1C8.36649 1 7.69633 3.29131 7.69633 4.76744V6.3978H6V8.57895V10.011H7.69633C7.69633 14.0869 7.69633 19 7.69633 19H11.1309C11.1309 19 11.1309 14.0208 11.1309 10.011H13.6859L13.8115 8.60098L14 6.41983H11.2775V6.3978Z"
+                            fill="currentColor" />
+                        </svg>
+                      </a></li>
+                    <li><a class="socials__link" href="#" target="_blank" rel="noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M15.7164 20H4.28365C1.91028 20 0 18.1241 0 15.8442V4.15584C0 1.84704 1.91028 0 4.28365 0H15.7164C18.0897 0 20 1.8759 20 4.15584V15.8442C20 18.153 18.0897 20 15.7164 20ZM4.28365 1.70274C2.86541 1.70274 1.70767 2.79942 1.70767 4.15584V15.8442C1.70767 17.2006 2.86541 18.2973 4.28365 18.2973H15.7164C17.1346 18.2973 18.2923 17.2006 18.2923 15.8442V4.15584C18.2923 2.79942 17.1346 1.70274 15.7164 1.70274H4.28365Z"
+                            fill="currentColor" />
+                          <path
+                            d="M10.0142 15.1804C7.11982 15.1804 4.77539 12.8427 4.77539 9.98558C4.77539 7.12843 7.11982 4.79077 10.0142 4.79077C12.9085 4.79077 15.253 7.12843 15.253 9.98558C15.253 12.8716 12.8796 15.1804 10.0142 15.1804ZM10.0142 6.52237C8.07496 6.52237 6.512 8.08082 6.512 10.0144C6.512 11.9192 8.07496 13.5065 10.0142 13.5065C11.9534 13.5065 13.5163 11.9481 13.5163 10.0144C13.5163 8.08082 11.9534 6.52237 10.0142 6.52237Z"
+                            fill="currentColor" />
+                          <path
+                            d="M16.8453 4.53103C16.8453 5.19481 16.2954 5.74315 15.6297 5.74315C14.964 5.74315 14.4141 5.19481 14.4141 4.53103C14.4141 3.86725 14.964 3.31891 15.6297 3.31891C16.2954 3.31891 16.8453 3.86725 16.8453 4.53103Z"
+                            fill="currentColor" />
+                        </svg>
+                      </a></li>
+                    <li><a class="socials__link" href="#" target="_blank" rel="noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M2.05539 16.59C1.29023 16.354 0.789932 15.8524 0.52507 15.1148C-0.1518 13.2856 -0.328377 5.64413 0.937076 4.13944C1.37851 3.63788 1.93767 3.31334 2.61454 3.25433C6.05775 2.87078 16.7405 2.92979 17.9471 3.37234C18.6534 3.63788 19.1831 4.10994 19.448 4.81803C20.1837 6.70627 20.2132 13.5806 19.3597 15.4099C19.1243 15.9114 18.7417 16.2655 18.2708 16.5015C17.0054 17.1506 3.73285 17.1506 2.05539 16.59ZM7.5292 12.9906C9.61867 11.9284 11.6493 10.8368 13.7387 9.77466C11.6493 8.68302 9.58924 7.62088 7.5292 6.52925C7.5292 8.71252 7.5292 10.8368 7.5292 12.9906Z"
+                            fill="currentColor" />
+                        </svg>
+                      </a></li>
+                    <li><a class="socials__link" href="#" target="_blank" rel="noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 16.4354C0 12.2721 0 8.13605 0 4C0.0272108 4 0.02721 4 0.0544209 4C2.06802 4 4.08162 4 6.09523 4C6.74829 4 7.40135 4.10885 8.0272 4.38096C9.034 4.81633 9.60543 5.60544 9.76869 6.66667C9.85032 7.2381 9.82311 7.80952 9.63264 8.35373C9.44216 8.92516 9.06121 9.30612 8.5442 9.60544C8.46257 9.65986 8.38094 9.68707 8.29931 9.74149C8.35373 9.7687 8.38094 9.7687 8.40815 9.79591C9.38774 10.1769 9.95917 10.9116 10.1496 11.9184C10.3129 12.7347 10.2313 13.551 9.85032 14.3129C9.30611 15.4286 8.40815 16.0816 7.18366 16.2993C6.66666 16.3809 6.12244 16.4354 5.60543 16.4354C3.7823 16.4354 1.95918 16.4354 0.136054 16.4354C0.0816325 16.4354 0.0544217 16.4354 0 16.4354ZM2.88435 14.2585C2.91156 14.2585 2.93877 14.2585 2.93877 14.2585C3.80952 14.2585 4.68026 14.2585 5.55101 14.2585C5.82312 14.2585 6.09523 14.2313 6.34013 14.1769C6.96598 14.0408 7.37414 13.6871 7.51019 13.034C7.56461 12.8163 7.56462 12.5714 7.56462 12.3265C7.5374 11.7279 7.21087 11.2925 6.63944 11.0748C6.34013 10.966 6.0408 10.9388 5.74149 10.9116C4.78911 10.9116 3.83673 10.9116 2.88435 10.9116H2.85714C2.88435 12.0544 2.88435 13.1701 2.88435 14.2585ZM2.88435 8.89795C2.91156 8.89795 2.91156 8.89795 2.93877 8.89795C3.83673 8.89795 4.70747 8.89795 5.60543 8.89795C6.01359 8.89795 6.39455 8.81632 6.7755 8.62584C7.04761 8.48979 7.21087 8.2721 7.29251 7.97278C7.34693 7.72789 7.37414 7.48299 7.34693 7.21088C7.29251 6.7483 7.0204 6.42177 6.55781 6.28572C6.14965 6.17687 5.74149 6.14966 5.33332 6.12245C4.54421 6.12245 3.78231 6.12245 2.99319 6.12245C2.96598 6.12245 2.93877 6.12245 2.91156 6.12245C2.88435 7.07483 2.88435 7.97278 2.88435 8.89795Z"
+                            fill="currentColor" />
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M20.0006 12.2449C17.8238 12.2449 15.6741 12.2449 13.4972 12.2449C13.4972 12.381 13.5244 12.517 13.5244 12.6258C13.5517 12.8707 13.6333 13.1156 13.7421 13.3605C14.0415 13.9592 14.5313 14.2857 15.1843 14.4218C15.5381 14.5034 15.919 14.5034 16.2727 14.4218C16.817 14.3129 17.1979 14.0136 17.47 13.5238C17.4972 13.4694 17.5244 13.4422 17.5789 13.4422C18.3136 13.4422 19.0483 13.4422 19.7829 13.4422C19.8102 13.4422 19.8374 13.4422 19.8646 13.4422C19.8374 13.5782 19.8102 13.6871 19.7829 13.7959C19.6469 14.2585 19.3748 14.6122 19.0755 14.966C18.3952 15.7279 17.5517 16.136 16.5721 16.2721C15.7829 16.3809 15.021 16.3809 14.2591 16.136C13.47 15.9184 12.7625 15.5102 12.1911 14.9116C11.7285 14.4218 11.4564 13.8231 11.3204 13.1701C11.0755 12.0272 11.0755 10.8844 11.4292 9.76871C11.919 8.19048 13.0347 7.26531 14.6401 6.93878C15.6469 6.74831 16.6265 6.82994 17.5789 7.23811C18.4496 7.59185 19.0755 8.2449 19.5108 9.08844C19.7829 9.63266 19.9462 10.2041 19.9734 10.8299C20.0006 11.2653 20.0006 11.7279 20.0006 12.1633C20.0006 12.1905 20.0006 12.2177 20.0006 12.2449ZM17.5789 10.6939C17.5789 10.6667 17.5789 10.6667 17.5789 10.6667C17.5789 10.585 17.5517 10.5034 17.5517 10.4218C17.4428 9.7415 17.0619 9.25171 16.4088 8.9796C16.0823 8.84354 15.7285 8.81633 15.3748 8.84354C14.6401 8.89796 14.0959 9.25171 13.7966 9.93198C13.7149 10.1225 13.6605 10.3129 13.6061 10.5034C13.5789 10.585 13.5789 10.6395 13.5517 10.7211C14.9122 10.6939 16.2455 10.6939 17.5789 10.6939Z"
+                            fill="currentColor" />
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M13.0625 5.93198C13.0625 5.44218 13.0625 4.9796 13.0625 4.48981C14.7224 4.48981 16.4094 4.48981 18.0693 4.48981C18.0693 4.9796 18.0693 5.44218 18.0693 5.93198C16.4094 5.93198 14.7496 5.93198 13.0625 5.93198Z"
+                            fill="currentColor" />
+                        </svg>
+                      </a></li>
+                    <li><a class="socials__link" href="#" target="_blank" rel="noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M9.98655 1C5.03587 1 1 4.92815 1 9.7478C1 12.4501 2.26458 14.8739 4.25561 16.4897V20L7.4574 18.1613C8.26457 18.3842 9.12556 18.5234 10.0135 18.5234C14.9641 18.5234 19 14.5953 19 9.77566C19 4.95601 14.9641 1 9.98655 1ZM10.9552 12.7845L8.64125 10.305L4.14798 12.7845L9.09866 7.4912L11.4126 9.97067L15.852 7.4912L10.9552 12.7845Z"
+                            fill="currentColor" />
+                        </svg>
+                      </a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup popup-common about__popup " data-popupname="_popup-about" aria-modal="true" role="dialog">
+          <div class="popup__overlay"></div>
+          <div class="popup__additional"></div>
+          <div class="popup__scroll">
+            <div class="popup__wrapper"><button class="popup__close"><img src="assets/img/popup-close.svg"
+                  alt="close"></button>
+              <div class="popup__content">
+                <p>default popup</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup popup-feedback thanks__popup " data-popupname="_popup-thanks" aria-modal="true" role="dialog">
+          <div class="popup__overlay"></div>
+          <div class="popup__additional"></div>
+          <div class="popup__scroll">
+            <div class="popup__wrapper"><button class="popup__close"><img src="assets/img/popup-close.svg"
+                  alt="close"></button>
+              <div class="popup__content">
+                <div class="feedback">
+                  <div class="feedback__label"><img src="assets/img/success.svg" alt="success"></div>
+                  <p class="feedback__title">Дякуємо! Форму успішно відправлено.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup popup-feedback error__popup " data-popupname="_popup-error" aria-modal="true" role="dialog">
+          <div class="popup__overlay"></div>
+          <div class="popup__additional"></div>
+          <div class="popup__scroll">
+            <div class="popup__wrapper"><button class="popup__close"><img src="assets/img/popup-close.svg"
+                  alt="close"></button>
+              <div class="popup__content">
+                <div class="feedback">
+                  <div class="feedback__label"><img src="assets/img/error.svg" alt="error"></div>
+                  <p class="feedback__title">Вибачте, сталася помилка. Спробуйте пізніше</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup popup-form form__popup fullscreen-phone" data-popupname="_popup-form" aria-modal="true"
+          role="dialog">
+          <div class="popup__overlay"></div>
+          <div class="popup__additional"></div>
+          <div class="popup__scroll">
+            <div class="popup__wrapper"><button class="popup__close"><img class="desktop"
+                  src="assets/img/popup-close.svg" alt="close"><img class="mobile"
+                  src="assets/img/popup-close-black.svg" alt="close"></button>
+              <div class="popup__content">
+                <div class="action">
+                  <p class="action__title">Отримати консультацію</p>
+                  <div class="action__main">
+                    <form class="form action__form" id="form-popup" action="post">
+                      <div><label for="popup-name"> <strong>Ім’я</strong><input id="popup-name" type="text"
+                            name="name"><span class="wpcf7-not-valid-tip">Невірний формат</span></label><label
+                          for="popup-lastname"> <strong>Прізвище</strong><input id="popup-lastname" type="text"
+                            name="lastname"><span class="wpcf7-not-valid-tip">Невірний формат</span></label></div>
+                      <div><label for="popup-email"> <strong>Email</strong><input id="popup-email" type="email"
+                            name="email"><span class="wpcf7-not-valid-tip">Невірний формат</span></label><label
+                          for="popup-telephone"> <strong>Телефон</strong><input id="popup-telephone" type="tel"
+                            name="telephone"><span class="wpcf7-not-valid-tip">Невірний формат</span></label></div>
+                      <div><label for="popup-request"> <strong>Чим ми можемо допомогти</strong><textarea
+                            id="popup-request" name="request"></textarea><span class="wpcf7-not-valid-tip">Невірний
+                            формат</span></label></div>
+                      <p><button type="submit">Відправити</button><span>Натискаючи на кнопку "Відправити" ви
+                          погоджуєтесь з<a href="./document.html" target="_blank" rel="noreferrer">умовами
+                            конфіденційності</a><span>компанії Persona Patman</span></span></p>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section class="banner" data-animate="clip-path">
+        <div class="banner-bg"></div>
+        <div class="_container banner__container">
+          <div class="banner__wrapper">
+            <div class="banner__main">
+              <div class="banner__text">
+                <h1 class="banner__title"><span>Професійне</span><span>створення</span><span class="labeled"><span
+                      class="labeled__label"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M28.334 28.3333L36.6673 20L28.334 11.6667M11.6673 11.6667L3.33398 20L11.6673 28.3333M23.334 5L16.6673 35"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg></span><span>сайтів</span></span></h1>
+                <p class="banner__subtitle">Створимо кращий сайт у вашій ніші, забезпечимо нескінченний потік клієнтів
+                </p>
+              </div>
+              <div class="banner__actions"><button class="banner__button button-dark popup-open"
+                  data-popup="_popup-form"><span>Обговорити проект</span><svg width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></button>
+                <div class="banner__glob glob mobile"><img src="assets/img/banner/glob.png" alt="glob"></div><button
+                  class="banner-circle-button"><span class="banner-circle-button__container"><span>Останні
+                      роботи</span><i class="banner-circle-button__outer"><span class="banner-circle-button__text"><img
+                          src="assets/img/banner/circle-button-text.svg" alt="text"></span><span
+                        class="banner-circle-button__ico"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9 27L27 9M27 9H15M27 9V21" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></span></i></span></button>
+              </div>
+              <div class="banner__glob glob desktop"><img src="assets/img/banner/glob.png" alt="glob"></div>
+            </div>
+            <div class="banner__footer">
+              <ul class="socials banner__socials">
+                <li><a class="socials__link" href="#" target="_blank" rel="noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M11.2775 6.3978V4.96573C11.2775 4.26071 11.7173 4.10649 12.0314 4.10649C12.3455 4.10649 13.9581 4.10649 13.9581 4.10649V1.02203L11.2984 1C8.36649 1 7.69633 3.29131 7.69633 4.76744V6.3978H6V8.57895V10.011H7.69633C7.69633 14.0869 7.69633 19 7.69633 19H11.1309C11.1309 19 11.1309 14.0208 11.1309 10.011H13.6859L13.8115 8.60098L14 6.41983H11.2775V6.3978Z"
+                        fill="currentColor" />
+                    </svg>
+                  </a></li>
+                <li><a class="socials__link" href="#" target="_blank" rel="noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M15.7164 20H4.28365C1.91028 20 0 18.1241 0 15.8442V4.15584C0 1.84704 1.91028 0 4.28365 0H15.7164C18.0897 0 20 1.8759 20 4.15584V15.8442C20 18.153 18.0897 20 15.7164 20ZM4.28365 1.70274C2.86541 1.70274 1.70767 2.79942 1.70767 4.15584V15.8442C1.70767 17.2006 2.86541 18.2973 4.28365 18.2973H15.7164C17.1346 18.2973 18.2923 17.2006 18.2923 15.8442V4.15584C18.2923 2.79942 17.1346 1.70274 15.7164 1.70274H4.28365Z"
+                        fill="currentColor" />
+                      <path
+                        d="M10.0142 15.1804C7.11982 15.1804 4.77539 12.8427 4.77539 9.98558C4.77539 7.12843 7.11982 4.79077 10.0142 4.79077C12.9085 4.79077 15.253 7.12843 15.253 9.98558C15.253 12.8716 12.8796 15.1804 10.0142 15.1804ZM10.0142 6.52237C8.07496 6.52237 6.512 8.08082 6.512 10.0144C6.512 11.9192 8.07496 13.5065 10.0142 13.5065C11.9534 13.5065 13.5163 11.9481 13.5163 10.0144C13.5163 8.08082 11.9534 6.52237 10.0142 6.52237Z"
+                        fill="currentColor" />
+                      <path
+                        d="M16.8453 4.53103C16.8453 5.19481 16.2954 5.74315 15.6297 5.74315C14.964 5.74315 14.4141 5.19481 14.4141 4.53103C14.4141 3.86725 14.964 3.31891 15.6297 3.31891C16.2954 3.31891 16.8453 3.86725 16.8453 4.53103Z"
+                        fill="currentColor" />
+                    </svg>
+                  </a></li>
+                <li><a class="socials__link" href="#" target="_blank" rel="noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M2.05539 16.59C1.29023 16.354 0.789932 15.8524 0.52507 15.1148C-0.1518 13.2856 -0.328377 5.64413 0.937076 4.13944C1.37851 3.63788 1.93767 3.31334 2.61454 3.25433C6.05775 2.87078 16.7405 2.92979 17.9471 3.37234C18.6534 3.63788 19.1831 4.10994 19.448 4.81803C20.1837 6.70627 20.2132 13.5806 19.3597 15.4099C19.1243 15.9114 18.7417 16.2655 18.2708 16.5015C17.0054 17.1506 3.73285 17.1506 2.05539 16.59ZM7.5292 12.9906C9.61867 11.9284 11.6493 10.8368 13.7387 9.77466C11.6493 8.68302 9.58924 7.62088 7.5292 6.52925C7.5292 8.71252 7.5292 10.8368 7.5292 12.9906Z"
+                        fill="currentColor" />
+                    </svg>
+                  </a></li>
+                <li><a class="socials__link" href="#" target="_blank" rel="noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0 16.4354C0 12.2721 0 8.13605 0 4C0.0272108 4 0.02721 4 0.0544209 4C2.06802 4 4.08162 4 6.09523 4C6.74829 4 7.40135 4.10885 8.0272 4.38096C9.034 4.81633 9.60543 5.60544 9.76869 6.66667C9.85032 7.2381 9.82311 7.80952 9.63264 8.35373C9.44216 8.92516 9.06121 9.30612 8.5442 9.60544C8.46257 9.65986 8.38094 9.68707 8.29931 9.74149C8.35373 9.7687 8.38094 9.7687 8.40815 9.79591C9.38774 10.1769 9.95917 10.9116 10.1496 11.9184C10.3129 12.7347 10.2313 13.551 9.85032 14.3129C9.30611 15.4286 8.40815 16.0816 7.18366 16.2993C6.66666 16.3809 6.12244 16.4354 5.60543 16.4354C3.7823 16.4354 1.95918 16.4354 0.136054 16.4354C0.0816325 16.4354 0.0544217 16.4354 0 16.4354ZM2.88435 14.2585C2.91156 14.2585 2.93877 14.2585 2.93877 14.2585C3.80952 14.2585 4.68026 14.2585 5.55101 14.2585C5.82312 14.2585 6.09523 14.2313 6.34013 14.1769C6.96598 14.0408 7.37414 13.6871 7.51019 13.034C7.56461 12.8163 7.56462 12.5714 7.56462 12.3265C7.5374 11.7279 7.21087 11.2925 6.63944 11.0748C6.34013 10.966 6.0408 10.9388 5.74149 10.9116C4.78911 10.9116 3.83673 10.9116 2.88435 10.9116H2.85714C2.88435 12.0544 2.88435 13.1701 2.88435 14.2585ZM2.88435 8.89795C2.91156 8.89795 2.91156 8.89795 2.93877 8.89795C3.83673 8.89795 4.70747 8.89795 5.60543 8.89795C6.01359 8.89795 6.39455 8.81632 6.7755 8.62584C7.04761 8.48979 7.21087 8.2721 7.29251 7.97278C7.34693 7.72789 7.37414 7.48299 7.34693 7.21088C7.29251 6.7483 7.0204 6.42177 6.55781 6.28572C6.14965 6.17687 5.74149 6.14966 5.33332 6.12245C4.54421 6.12245 3.78231 6.12245 2.99319 6.12245C2.96598 6.12245 2.93877 6.12245 2.91156 6.12245C2.88435 7.07483 2.88435 7.97278 2.88435 8.89795Z"
+                        fill="currentColor" />
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M20.0006 12.2449C17.8238 12.2449 15.6741 12.2449 13.4972 12.2449C13.4972 12.381 13.5244 12.517 13.5244 12.6258C13.5517 12.8707 13.6333 13.1156 13.7421 13.3605C14.0415 13.9592 14.5313 14.2857 15.1843 14.4218C15.5381 14.5034 15.919 14.5034 16.2727 14.4218C16.817 14.3129 17.1979 14.0136 17.47 13.5238C17.4972 13.4694 17.5244 13.4422 17.5789 13.4422C18.3136 13.4422 19.0483 13.4422 19.7829 13.4422C19.8102 13.4422 19.8374 13.4422 19.8646 13.4422C19.8374 13.5782 19.8102 13.6871 19.7829 13.7959C19.6469 14.2585 19.3748 14.6122 19.0755 14.966C18.3952 15.7279 17.5517 16.136 16.5721 16.2721C15.7829 16.3809 15.021 16.3809 14.2591 16.136C13.47 15.9184 12.7625 15.5102 12.1911 14.9116C11.7285 14.4218 11.4564 13.8231 11.3204 13.1701C11.0755 12.0272 11.0755 10.8844 11.4292 9.76871C11.919 8.19048 13.0347 7.26531 14.6401 6.93878C15.6469 6.74831 16.6265 6.82994 17.5789 7.23811C18.4496 7.59185 19.0755 8.2449 19.5108 9.08844C19.7829 9.63266 19.9462 10.2041 19.9734 10.8299C20.0006 11.2653 20.0006 11.7279 20.0006 12.1633C20.0006 12.1905 20.0006 12.2177 20.0006 12.2449ZM17.5789 10.6939C17.5789 10.6667 17.5789 10.6667 17.5789 10.6667C17.5789 10.585 17.5517 10.5034 17.5517 10.4218C17.4428 9.7415 17.0619 9.25171 16.4088 8.9796C16.0823 8.84354 15.7285 8.81633 15.3748 8.84354C14.6401 8.89796 14.0959 9.25171 13.7966 9.93198C13.7149 10.1225 13.6605 10.3129 13.6061 10.5034C13.5789 10.585 13.5789 10.6395 13.5517 10.7211C14.9122 10.6939 16.2455 10.6939 17.5789 10.6939Z"
+                        fill="currentColor" />
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M13.0625 5.93198C13.0625 5.44218 13.0625 4.9796 13.0625 4.48981C14.7224 4.48981 16.4094 4.48981 18.0693 4.48981C18.0693 4.9796 18.0693 5.44218 18.0693 5.93198C16.4094 5.93198 14.7496 5.93198 13.0625 5.93198Z"
+                        fill="currentColor" />
+                    </svg>
+                  </a></li>
+                <li><a class="socials__link" href="#" target="_blank" rel="noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M9.98655 1C5.03587 1 1 4.92815 1 9.7478C1 12.4501 2.26458 14.8739 4.25561 16.4897V20L7.4574 18.1613C8.26457 18.3842 9.12556 18.5234 10.0135 18.5234C14.9641 18.5234 19 14.5953 19 9.77566C19 4.95601 14.9641 1 9.98655 1ZM10.9552 12.7845L8.64125 10.305L4.14798 12.7845L9.09866 7.4912L11.4126 9.97067L15.852 7.4912L10.9552 12.7845Z"
+                        fill="currentColor" />
+                    </svg>
+                  </a></li>
+              </ul><a class="banner-download" href="#"> <span class="banner-download__label"><svg width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M8 17L12 21M12 21L16 17M12 21V12M20 16.7428C21.2215 15.734 22 14.2079 22 12.5C22 9.46243 19.5376 7 16.5 7C16.2815 7 16.0771 6.886 15.9661 6.69774C14.6621 4.48484 12.2544 3 9.5 3C5.35786 3 2 6.35786 2 10.5C2 12.5661 2.83545 14.4371 4.18695 15.7935"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg></span><span class="banner-download__text">Завантажити бриф</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="footer">
+        <div class="_container footer__container">
+          <div class="footer__wrapper">
+            <nav class="footer-navigation">
+              <ul class="footer-navigation__list">
+                <li class="footer-navigation__li">
+                  <ul class="footer-navigation__col">
+                    <li class="footer-navigation__row"><a class="footer-navigation__item" href="./about.html">Про
+                        нас</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item" href="./team.html">Команда</a>
+                    </li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item"
+                        href="./partnership.html">Партнерство</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item" href="./pro-bono.html">Про
+                        Боно</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item" href="./news.html">Новини</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="footer-navigation__li">
+                  <ul class="footer-navigation__col">
+                    <li class="footer-navigation__row"><a class="footer-navigation__item"
+                        href="./immigration.html">Імміграція</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item"
+                        href="./immigration.html">Легалізація</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item"
+                        href="./cases.html">Імміграційні кейси</a></li>
+                  </ul>
+                </li>
+                <li class="footer-navigation__li">
+                  <ul class="footer-navigation__col">
+                    <li class="footer-navigation__row"><a class="footer-navigation__item"
+                        href="./recruting.html">Рекрутинг</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item"
+                        href="./recruting.html">Адаптація</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item"
+                        href="./cases.html">Рекрутингові кейси</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item" href="./partnership.html">Наші
+                        партнери</a></li>
+                  </ul>
+                </li>
+                <li class="footer-navigation__li">
+                  <ul class="footer-navigation__col">
+                    <li class="footer-navigation__row"><a class="footer-navigation__item" href="./info-for.html">Для
+                        урядів</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item" href="./info-for.html">Для
+                        місцевої влади</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item" href="./info-for.html">Для
+                        донорів і NGO</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item" href="./info-for.html">Для
+                        банків і фінтеху</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item" href="./info-for.html">Для
+                        компаній</a></li>
+                    <li class="footer-navigation__row"><a class="footer-navigation__item" href="./info-for.html">Для
+                        мігрантів</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+            <div class="footer-bottom">
+              <div class="footer-bottom__item">
+                <p class="footer__copyright">© 2023 Persona Patman LLC&nbsp&nbsp|&nbsp&nbspAll Rights Reserved</p>
+              </div>
+              <div class="footer-bottom__item">
+                <ul class="footer-bottom__list">
+                  <li class="footer-bottom__list__li"><a class="footer-bottom___link" href="./document.html"
+                      target="_blank" rel="noreferrer">Terms of Use</a></li>
+                  <li class="footer-bottom__list__li"><a class="footer-bottom___link" href="./document.html"
+                      target="_blank" rel="noreferrer">Privacy Policy</a></li>
+                  <li class="footer-bottom__list__li"><a class="footer-bottom___link" href="./document.html"
+                      target="_blank" rel="noreferrer">Cookie Policy</a></li>
+                  <li class="footer-bottom__list__li"><a class="footer-bottom___link" href="./document.html"
+                      target="_blank" rel="noreferrer">Disclaimer</a></li>
+                </ul>
+              </div>
+              <div class="footer-bottom__item"><a class="develop" href="https://impulse-design.com.ua/" target="_blank"
+                  rel="noreferrer"><span class="develop__text">Розробка сайту</span><span class="develop__img"><img
+                      src="assets/img/impulse.svg" alt="impulse"></span></a></div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="runtime.bundle.js"> </script>
+    <script src="vendor.js"> </script>
+    <script src="607.bundle.js"> </script>
+    <script src="index.1.bundle.js"> </script>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+@mixin text-heading-styles {
+  margin: 0;
+  font-family: $font-family-heading;
+  font-weight: 700;
+  line-height: 120%;
+  text-transform: uppercase;
+  //color: var(--color-black);
+}
+
+@mixin text-heading-1 {
+  @include text-heading-styles;
+  line-height: 100%;
+  word-break: break-word;
+
+  @include viewport-desktop {
+    font-size: px-to-rem(72);
+    
+    @media (min-width: 1601px) {
+      font-size: px-to-rem(80);
+    }
+  }
+
+  @include viewport-tablet-max {
+    font-size: px-to-rem(56);
+    
+    @media (max-width: 600px) {
+      font-size: px-to-rem(40);
+    }
+
+    @media (max-width: 359px) {
+      font-size: px-to-rem(34);
+    }
+  }
+}
+
+@mixin text-heading-2 {
+  @include text-heading-styles;
+  line-height: 110%;
+
+  @include viewport-desktop {
+    font-size: px-to-rem(60);
+    
+    @media (min-width: 1601px) {
+      font-size: px-to-rem(72);
+    }
+  }
+
+  @include viewport-tablet {
+    font-size: px-to-rem(48);
+  }
+  
+  @include viewport-phone {
+    font-size: px-to-rem(36);
+
+    @media (max-width: 359px) {
+      font-size: px-to-rem(30);
+    }
+  }
+
+  span {
+    color: var(--color-gold);
+  }
+}
+
+@mixin text-heading-3 {
+  @include text-heading-styles;
+
+  @include viewport-desktop {
+    font-size: px-to-rem(24);
+    
+    @media (min-width: 1601px) {
+      font-size: px-to-rem(30);
+    }
+  }
+
+  @include viewport-tablet {
+    font-size: px-to-rem(20);
+  }
+  
+  @include viewport-phone {
+    font-size: px-to-rem(20);
+  }
+}
+
+@mixin text-heading-4 {
+  @include text-heading-styles;
+
+  @include viewport-desktop {
+    font-size: px-to-rem(20);
+    
+    @media (min-width: 1601px) {
+      font-size: px-to-rem(24);
+    }
+  }
+
+  @include viewport-tablet {
+    font-size: px-to-rem(20);
+  }
+  
+  @include viewport-phone {
+    font-size: px-to-rem(18);
+  }
+}
+
+@mixin text-heading-5 {
+  @include text-heading-4;
+}
+
+@mixin text-heading-6 {
+  @include text-heading-5;
+}
