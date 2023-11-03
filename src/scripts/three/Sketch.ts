@@ -82,7 +82,7 @@ export class Sketch {
     this._createLight();
     this._initRenderer();
     // this._initOrbitControls();
-    this._initComposer();
+    // this._initComposer();
     this._createMesh();
     this.render();
     // this._postProcessing();
@@ -203,9 +203,9 @@ export class Sketch {
   private _onWindowResize() {
     if (
       !this._camera ||
-      !this._renderer ||
-      !this._composerBloom ||
-      !this._composerFinal
+      !this._renderer
+      // !this._composerBloom ||
+      // !this._composerFinal
       // !this._controls
     ) {
       return;
@@ -227,8 +227,8 @@ export class Sketch {
     this._camera.updateProjectionMatrix();
 
     this._renderer.setSize(this._viewport.width, this._viewport.height);
-    this._composerBloom.setSize(this._viewport.width, this._viewport.height);
-    this._composerFinal.setSize(this._viewport.width, this._viewport.height);
+    // this._composerBloom.setSize(this._viewport.width, this._viewport.height);
+    // this._composerFinal.setSize(this._viewport.width, this._viewport.height);
 
     // this._composer.passes.forEach((pass) => {
     //   /* @ts-ignore */
@@ -434,17 +434,17 @@ export class Sketch {
       this._meshItems.length === 0 ||
       !this._camera ||
       !this._renderer ||
-      !this._scene ||
+      !this._scene
       // !this._controls ||
-      !this._composerBloom ||
-      !this._composerFinal
+      // !this._composerBloom ||
+      // !this._composerFinal
     ) {
       return;
     }
 
     this._renderer.render(this._scene, this._camera);
-    this._composerBloom.render();
-    this._composerFinal.render();
+    // this._composerBloom.render();
+    // this._composerFinal.render();
     // this._controls.update();
 
     this._meshItems.forEach((mesh) => {

@@ -183,29 +183,29 @@ export default class BlobGLTF {
             shader.uniforms.uAlpha = this._uniforms.uAlpha;
             shader.uniforms.uScale = this._uniforms.uScale;
 
-            const parsVertexString = `#include <displacementmap_pars_vertex>`;
-            shader.vertexShader = shader.vertexShader.replace(
-              parsVertexString,
-              `${parsVertexString}\n${vertexPars}`
-            );
+            // const parsVertexString = `#include <displacementmap_pars_vertex>`;
+            // shader.vertexShader = shader.vertexShader.replace(
+            //   parsVertexString,
+            //   `${parsVertexString}\n${vertexPars}`
+            // );
 
-            const mainVertexString = `#include <displacementmap_vertex>`;
-            shader.vertexShader = shader.vertexShader.replace(
-              mainVertexString,
-              `${mainVertexString}\n${vertexMain}`
-            );
+            // const mainVertexString = `#include <displacementmap_vertex>`;
+            // shader.vertexShader = shader.vertexShader.replace(
+            //   mainVertexString,
+            //   `${mainVertexString}\n${vertexMain}`
+            // );
 
-            const parsFragmentString = `#include <bumpmap_pars_fragment>`;
-            shader.fragmentShader = shader.fragmentShader.replace(
-              parsFragmentString,
-              `${parsFragmentString}\n${fragmentPars}`
-            );
+            // const parsFragmentString = `#include <bumpmap_pars_fragment>`;
+            // shader.fragmentShader = shader.fragmentShader.replace(
+            //   parsFragmentString,
+            //   `${parsFragmentString}\n${fragmentPars}`
+            // );
 
-            const mainFragmentString = `#include <normal_fragment_maps>`;
-            shader.fragmentShader = shader.fragmentShader.replace(
-              mainFragmentString,
-              `${mainFragmentString}\n${fragmentMain}`
-            );
+            // const mainFragmentString = `#include <normal_fragment_maps>`;
+            // shader.fragmentShader = shader.fragmentShader.replace(
+            //   mainFragmentString,
+            //   `${mainFragmentString}\n${fragmentMain}`
+            // );
             /* eslint-enable */
 
             // console.log(shader.fragmentShader);
