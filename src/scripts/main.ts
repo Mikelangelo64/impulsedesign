@@ -1,11 +1,9 @@
 import accordionInit from './accordion/init';
 import initPopups from './popup/init';
 import scrollBarInit from './scrollbar';
-import initThree from './three/init';
 
 export const init = () => {
   scrollBarInit();
-  initThree();
   accordionInit();
 
   // const header = document.querySelector('.header') as HTMLElement;
