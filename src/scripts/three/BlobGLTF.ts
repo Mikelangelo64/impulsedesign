@@ -5,7 +5,7 @@ import vertexMain from '@/glsl/blob/vertex_main.glsl';
 import fragmentMain from '@/glsl/blob/fragment_main.glsl';
 import fragmentPars from '@/glsl/blob/fragment_pars.glsl';
 import { lerp } from '../config/lerp';
-import path from '@/assets/models/model-1.glb';
+import path from '@/assets/models/glob.glb';
 import vevet from '../config/vevet';
 
 interface IMaterialSettings {
@@ -139,8 +139,10 @@ export default class BlobGLTF {
 
   private async _createMesh() {
     // const imageTexture = new THREE.TextureLoader().load('/public/model.glb');
+    const gltf = await this._loadGLTF();
+    this._model = gltf.scene;
 
-    this._model = (await this._loadGLTF()).scene;
+    const { animations } = gltf;
 
     const box = new THREE.Box3().setFromObject(this._model);
     const sizes = box.getSize(this._sizeGeometry);
@@ -163,13 +165,69 @@ export default class BlobGLTF {
       emissive: '#37200d'
     };
 
+    const mixer = new THREE.AnimationMixer(gltf.scene);
+    console.log(mixer, animations);
+
     this._model.traverse((child) => {
-      if (child.type === 'Mesh') {
-        console.log(child);
+      // if (child.type === 'Mesh') {
+      // console.log(child);
 
-        const mesh = child as THREE.Mesh;
+      const mesh = child as THREE.Mesh;
 
-        const material = new THREE.MeshPhongMaterial({
+      const material = new THREE.MeshPhongMaterial({
+        shininess: settings.shininess,
+        color: settings.color,
+        specular: settings.specular,
+        emissive: settings.emissive,
+
+        // @ts-ignore
+        onBeforeCompile: (shader: THREE.Shader) => {
+          if (!this._uniforms) {
+            return;
+          }
+
+          // storing shader that has already exist
+          material.userData.shader = shader;
+
+          // uniforms
+          /* eslint-disable */
+          shader.uniforms.uTime = this._uniforms.uTime;
+          shader.uniforms.uAlpha = this._uniforms.uAlpha;
+          shader.uniforms.uScale = this._uniforms.uScale;
+
+          const parsVertexString = `#include <displacementmap_pars_vertex>`;
+          shader.vertexShader = shader.vertexShader.replace(
+            parsVertexString,
+            `${parsVertexString}\n${vertexPars}`
+          );
+
+          const mainVertexString = `#include <displacementmap_vertex>`;
+          shader.vertexShader = shader.vertexShader.replace(
+            mainVertexString,
+            `${mainVertexString}\n${vertexMain}`
+          );
+
+          const parsFragmentString = `#include <bumpmap_pars_fragment>`;
+          shader.fragmentShader = shader.fragmentShader.replace(
+            parsFragmentString,
+            `${parsFragmentString}\n${fragmentPars}`
+          );
+
+          const mainFragmentString = `#include <normal_fragment_maps>`;
+          shader.fragmentShader = shader.fragmentShader.replace(
+            mainFragmentString,
+            `${mainFragmentString}\n${fragmentMain}`
+          );
+          /* eslint-enable */
+
+          // console.log(shader.fragmentShader);
+        }
+      });
+
+      mesh.material = material;
+
+      if (child.name === 'Cube001') {
+        const materialCube = new THREE.MeshPhongMaterial({
           shininess: settings.shininess,
           color: settings.color,
           specular: settings.specular,
@@ -186,98 +244,45 @@ export default class BlobGLTF {
 
             // uniforms
             /* eslint-disable */
-            // shader.uniforms.uTime = this._uniforms.uTime;
-            // shader.uniforms.uAlpha = this._uniforms.uAlpha;
-            // shader.uniforms.uScale = this._uniforms.uScale;
+            shader.uniforms.uTime = this._uniforms.uTime;
+            shader.uniforms.uAlpha = this._uniforms.uAlpha;
+            shader.uniforms.uScale = this._uniforms.uScale;
 
-            // const parsVertexString = `#include <displacementmap_pars_vertex>`;
-            // shader.vertexShader = shader.vertexShader.replace(
-            //   parsVertexString,
-            //   `${parsVertexString}\n${vertexPars}`
-            // );
+            const parsVertexString = `#include <displacementmap_pars_vertex>`;
+            shader.vertexShader = shader.vertexShader.replace(
+              parsVertexString,
+              `${parsVertexString}\n${vertexPars}`
+            );
 
-            // const mainVertexString = `#include <displacementmap_vertex>`;
-            // shader.vertexShader = shader.vertexShader.replace(
-            //   mainVertexString,
-            //   `${mainVertexString}\n${vertexMain}`
-            // );
+            const mainVertexString = `#include <displacementmap_vertex>`;
+            shader.vertexShader = shader.vertexShader.replace(
+              mainVertexString,
+              `${mainVertexString}\n${vertexMain}`
+            );
 
-            // const parsFragmentString = `#include <bumpmap_pars_fragment>`;
-            // shader.fragmentShader = shader.fragmentShader.replace(
-            //   parsFragmentString,
-            //   `${parsFragmentString}\n${fragmentPars}`
-            // );
+            const parsFragmentString = `#include <bumpmap_pars_fragment>`;
+            shader.fragmentShader = shader.fragmentShader.replace(
+              parsFragmentString,
+              `${parsFragmentString}\n${fragmentPars}`
+            );
 
-            // const mainFragmentString = `#include <normal_fragment_maps>`;
-            // shader.fragmentShader = shader.fragmentShader.replace(
-            //   mainFragmentString,
-            //   `${mainFragmentString}\n${fragmentMain}`
-            // );
+            const mainFragmentString = `#include <normal_fragment_maps>`;
+            shader.fragmentShader = shader.fragmentShader.replace(
+              mainFragmentString,
+              `${mainFragmentString}\n${fragmentMain}`
+            );
             /* eslint-enable */
 
             // console.log(shader.fragmentShader);
           }
         });
 
-        mesh.material = material;
-
-        if (child.name === 'Cube001') {
-          const materialCube = new THREE.MeshPhongMaterial({
-            shininess: settings.shininess,
-            color: settings.color,
-            specular: settings.specular,
-            emissive: settings.emissive,
-
-            // @ts-ignore
-            onBeforeCompile: (shader: THREE.Shader) => {
-              if (!this._uniforms) {
-                return;
-              }
-
-              // storing shader that has already exist
-              material.userData.shader = shader;
-
-              // uniforms
-              /* eslint-disable */
-              shader.uniforms.uTime = this._uniforms.uTime;
-              shader.uniforms.uAlpha = this._uniforms.uAlpha;
-              shader.uniforms.uScale = this._uniforms.uScale;
-
-              const parsVertexString = `#include <displacementmap_pars_vertex>`;
-              shader.vertexShader = shader.vertexShader.replace(
-                parsVertexString,
-                `${parsVertexString}\n${vertexPars}`
-              );
-
-              const mainVertexString = `#include <displacementmap_vertex>`;
-              shader.vertexShader = shader.vertexShader.replace(
-                mainVertexString,
-                `${mainVertexString}\n${vertexMain}`
-              );
-
-              const parsFragmentString = `#include <bumpmap_pars_fragment>`;
-              shader.fragmentShader = shader.fragmentShader.replace(
-                parsFragmentString,
-                `${parsFragmentString}\n${fragmentPars}`
-              );
-
-              const mainFragmentString = `#include <normal_fragment_maps>`;
-              shader.fragmentShader = shader.fragmentShader.replace(
-                mainFragmentString,
-                `${mainFragmentString}\n${fragmentMain}`
-              );
-              /* eslint-enable */
-
-              // console.log(shader.fragmentShader);
-            }
-          });
-
-          mesh.material = materialCube;
-        }
-        // mesh.geometry = geometry;
-
-        // child.scale.set(sizes.x * 0.01, sizes.y * 0.01, sizes.z * 0.1);
+        mesh.material = materialCube;
       }
+      // mesh.geometry = geometry;
+
+      // child.scale.set(sizes.x * 0.01, sizes.y * 0.01, sizes.z * 0.1);
+      // }
     });
 
     this._parent.add(this._model);
@@ -307,7 +312,7 @@ export default class BlobGLTF {
 
     // console.log(this._mesh.rotation.x);
 
-    this._model.rotation.y += 0.01;
+    // this._model.rotation.y += 0.01;
     // this._mesh.rotation.y += 0.01;
     // this._mesh.position.x += 10;
   }
