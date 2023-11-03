@@ -186,9 +186,9 @@ export default class BlobGLTF {
 
             // uniforms
             /* eslint-disable */
-            shader.uniforms.uTime = this._uniforms.uTime;
-            shader.uniforms.uAlpha = this._uniforms.uAlpha;
-            shader.uniforms.uScale = this._uniforms.uScale;
+            // shader.uniforms.uTime = this._uniforms.uTime;
+            // shader.uniforms.uAlpha = this._uniforms.uAlpha;
+            // shader.uniforms.uScale = this._uniforms.uScale;
 
             // const parsVertexString = `#include <displacementmap_pars_vertex>`;
             // shader.vertexShader = shader.vertexShader.replace(
@@ -220,6 +220,60 @@ export default class BlobGLTF {
         });
 
         mesh.material = material;
+
+        if (child.name === 'Cube001') {
+          const materialCube = new THREE.MeshPhongMaterial({
+            shininess: settings.shininess,
+            color: settings.color,
+            specular: settings.specular,
+            emissive: settings.emissive,
+
+            // @ts-ignore
+            onBeforeCompile: (shader: THREE.Shader) => {
+              if (!this._uniforms) {
+                return;
+              }
+
+              // storing shader that has already exist
+              material.userData.shader = shader;
+
+              // uniforms
+              /* eslint-disable */
+              shader.uniforms.uTime = this._uniforms.uTime;
+              shader.uniforms.uAlpha = this._uniforms.uAlpha;
+              shader.uniforms.uScale = this._uniforms.uScale;
+
+              const parsVertexString = `#include <displacementmap_pars_vertex>`;
+              shader.vertexShader = shader.vertexShader.replace(
+                parsVertexString,
+                `${parsVertexString}\n${vertexPars}`
+              );
+
+              const mainVertexString = `#include <displacementmap_vertex>`;
+              shader.vertexShader = shader.vertexShader.replace(
+                mainVertexString,
+                `${mainVertexString}\n${vertexMain}`
+              );
+
+              const parsFragmentString = `#include <bumpmap_pars_fragment>`;
+              shader.fragmentShader = shader.fragmentShader.replace(
+                parsFragmentString,
+                `${parsFragmentString}\n${fragmentPars}`
+              );
+
+              const mainFragmentString = `#include <normal_fragment_maps>`;
+              shader.fragmentShader = shader.fragmentShader.replace(
+                mainFragmentString,
+                `${mainFragmentString}\n${fragmentMain}`
+              );
+              /* eslint-enable */
+
+              // console.log(shader.fragmentShader);
+            }
+          });
+
+          mesh.material = materialCube;
+        }
         // mesh.geometry = geometry;
 
         // child.scale.set(sizes.x * 0.01, sizes.y * 0.01, sizes.z * 0.1);

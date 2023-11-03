@@ -18,7 +18,7 @@ float b = 5. * pnoise(.12 * position + vec3(2. * uTime), vec3(100.));
 float displacement = (noise + b) * uAlpha;
 vDisplacement = b * uAlpha * uScale;
 
-transformed += normalize( objectNormal ) * displacement;
+transformed += normalize( objectNormal ); //* displacement;
 
 // float noise = 10. * -0.1 * turbulance(0.5 * normal + uTime);
 
