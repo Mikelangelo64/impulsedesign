@@ -8,7 +8,7 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import debounce from '../config/debounce';
 import BlobGLTF from './BlobGLTF';
 import vevet from '../config/vevet';
-import Blob from './Blob';
+// import Blob from './Blob';
 // import { AnimationFrame, utils } from 'vevet';
 // import { useDatGUISettings } from './gui/useDatGUISettings';
 
@@ -58,7 +58,7 @@ export class Sketch {
 
   private _renderer: THREE.WebGLRenderer | undefined;
 
-  private _meshItems: Blob[];
+  private _meshItems: BlobGLTF[];
 
   private _parent: THREE.Object3D;
 
@@ -474,7 +474,7 @@ export class Sketch {
       return;
     }
 
-    const mesh = new Blob(
+    const mesh = new BlobGLTF(
       this._scene,
       0,
       this._meshActionDomArray,

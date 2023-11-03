@@ -5,7 +5,7 @@ import vertexMain from '@/glsl/blob/vertex_main.glsl';
 import fragmentMain from '@/glsl/blob/fragment_main.glsl';
 import fragmentPars from '@/glsl/blob/fragment_pars.glsl';
 import { lerp } from '../config/lerp';
-import path from '@/assets/models/glob.glb';
+import path from '@/assets/models/model-1.glb';
 import vevet from '../config/vevet';
 
 interface IMaterialSettings {
@@ -195,29 +195,29 @@ export default class BlobGLTF {
           shader.uniforms.uAlpha = this._uniforms.uAlpha;
           shader.uniforms.uScale = this._uniforms.uScale;
 
-          const parsVertexString = `#include <displacementmap_pars_vertex>`;
-          shader.vertexShader = shader.vertexShader.replace(
-            parsVertexString,
-            `${parsVertexString}\n${vertexPars}`
-          );
+          // const parsVertexString = `#include <displacementmap_pars_vertex>`;
+          // shader.vertexShader = shader.vertexShader.replace(
+          //   parsVertexString,
+          //   `${parsVertexString}\n${vertexPars}`
+          // );
 
-          const mainVertexString = `#include <displacementmap_vertex>`;
-          shader.vertexShader = shader.vertexShader.replace(
-            mainVertexString,
-            `${mainVertexString}\n${vertexMain}`
-          );
+          // const mainVertexString = `#include <displacementmap_vertex>`;
+          // shader.vertexShader = shader.vertexShader.replace(
+          //   mainVertexString,
+          //   `${mainVertexString}\n${vertexMain}`
+          // );
 
-          const parsFragmentString = `#include <bumpmap_pars_fragment>`;
-          shader.fragmentShader = shader.fragmentShader.replace(
-            parsFragmentString,
-            `${parsFragmentString}\n${fragmentPars}`
-          );
+          // const parsFragmentString = `#include <bumpmap_pars_fragment>`;
+          // shader.fragmentShader = shader.fragmentShader.replace(
+          //   parsFragmentString,
+          //   `${parsFragmentString}\n${fragmentPars}`
+          // );
 
-          const mainFragmentString = `#include <normal_fragment_maps>`;
-          shader.fragmentShader = shader.fragmentShader.replace(
-            mainFragmentString,
-            `${mainFragmentString}\n${fragmentMain}`
-          );
+          // const mainFragmentString = `#include <normal_fragment_maps>`;
+          // shader.fragmentShader = shader.fragmentShader.replace(
+          //   mainFragmentString,
+          //   `${mainFragmentString}\n${fragmentMain}`
+          // );
           /* eslint-enable */
 
           // console.log(shader.fragmentShader);
@@ -312,7 +312,7 @@ export default class BlobGLTF {
 
     // console.log(this._mesh.rotation.x);
 
-    // this._model.rotation.y += 0.01;
+    this._model.rotation.y += 0.01;
     // this._mesh.rotation.y += 0.01;
     // this._mesh.position.x += 10;
   }
