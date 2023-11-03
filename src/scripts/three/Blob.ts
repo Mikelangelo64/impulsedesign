@@ -117,7 +117,7 @@ export default class Blob {
   private async _createMesh() {
     // const ratioSize = this._action.dom.getBoundingClientRect().width / 100;
 
-    const geometry = new THREE.IcosahedronGeometry(this._sizeGeometry, 100);
+    const geometry = new THREE.IcosahedronGeometry(this._sizeGeometry, 50);
     const geometryHover = new THREE.IcosahedronGeometry(this._sizeGeometry, 0);
 
     const scaleValue = this._size.x * (1 / this._sizeGeometry);
@@ -314,7 +314,7 @@ export default class Blob {
       easing: [0.25, 0.1, 0.25, 1]
     });
 
-    timeline.addCallback('progress', ({ progress, easing }) => {
+    timeline.addCallback('progress', ({ easing }) => {
       if (!this._uniforms) {
         return;
       }
