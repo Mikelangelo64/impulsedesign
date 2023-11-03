@@ -7,6 +7,8 @@ import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import debounce from '../config/debounce';
 import BlobGLTF from './BlobGLTF';
+import vevet from '../config/vevet';
+// import { AnimationFrame, utils } from 'vevet';
 // import { useDatGUISettings } from './gui/useDatGUISettings';
 
 interface ILight {
@@ -61,6 +63,8 @@ export class Sketch {
 
   private _meshActionDomArray: HTMLElement[];
 
+  // private _frameResize: AnimationFrame | undefined;
+
   constructor(container: HTMLElement, meshActionDomArary: HTMLElement[]) {
     this._container = container;
     this._meshActionDomArray = meshActionDomArary;
@@ -86,6 +90,8 @@ export class Sketch {
     this._createMesh();
     this.render();
     // this._postProcessing();
+
+    // this._changeWindowHeight();
 
     window.addEventListener(
       'resize',
@@ -200,7 +206,56 @@ export class Sketch {
     // });
   }
 
+  // private _changeWindowHeight() {
+  //   const frame = new AnimationFrame({ fps: 60 });
+
+  //   const render = () => {
+  //     if (
+  //       !this._camera ||
+  //       !this._renderer
+  //       // !this._composerBloom ||
+  //       // !this._composerFinal
+  //       // !this._controls
+  //     ) {
+  //       return;
+  //     }
+
+  //     this._viewport = {
+  //       width: window.innerWidth,
+  //       height: utils.math.lerp(this._viewport.height, window.innerHeight, 0.8),
+  //       aspectRatio: window.innerWidth / this._viewport.height
+  //     };
+
+  //     // this._controls.update();
+
+  //     console.log(this._viewport.height);
+
+  //     this._camera.fov =
+  //       (180 * (2 * Math.atan(this._viewport.height / 2 / 1000))) / Math.PI;
+  //     this._camera.aspect = this._viewport.aspectRatio;
+  //     this._camera.updateProjectionMatrix();
+
+  //     this._renderer.setSize(this._viewport.width, this._viewport.height);
+
+  //     if (this._viewport.height === window.innerHeight) {
+  //       frame.pause();
+  //     }
+  //   };
+
+  //   frame.addCallback('frame', () => {
+  //     render();
+  //   });
+
+  //   frame.pause();
+  //   this._frameResize = frame;
+  // }
+
   private _onWindowResize() {
+    // if (!this._frameResize) {
+    //   return;
+    // }
+    // this._frameResize.play();
+
     if (
       !this._camera ||
       !this._renderer
@@ -211,14 +266,28 @@ export class Sketch {
       return;
     }
 
+    let newHeight = window.innerHeight;
+
+    if (vevet.viewport.isPhone) {
+      const difference = Math.abs(this._viewport.height - window.innerHeight);
+      console.log(difference);
+
+      if (difference < 100) {
+        newHeight = this._viewport.height;
+      }
+
+      // newHeight = window.outerHeight;
+    }
+
     this._viewport = {
       width: window.innerWidth,
-      height: window.innerHeight,
-      aspectRatio: window.innerWidth / window.innerHeight
+      height: newHeight,
+      aspectRatio: window.innerWidth / newHeight
     };
 
-    // this._createCamera();
-    // this._controls.update();
+    // // this._controls.update();
+
+    // console.log(this._viewport.height);
 
     this._camera.fov =
       (180 * (2 * Math.atan(this._viewport.height / 2 / 1000))) / Math.PI;
@@ -227,6 +296,7 @@ export class Sketch {
     this._camera.updateProjectionMatrix();
 
     this._renderer.setSize(this._viewport.width, this._viewport.height);
+
     // this._composerBloom.setSize(this._viewport.width, this._viewport.height);
     // this._composerFinal.setSize(this._viewport.width, this._viewport.height);
 

@@ -109,7 +109,14 @@ export default class BlobGLTF {
     // left - window.innerWidth / 2 + width / 2
     // const newPositionX = lerp(this._position.x, left, 0.04);
     const newPositionX = left;
-    const newPositionY = lerp(this._position.y, top, 0.6);
+    let newPositionY = 0;
+
+    // if (vevet.viewport.isPhone) {
+    //   newPositionY = lerp(this._position.y, top, 0.88);
+    //   // newPositionY = top;
+    // } else {
+    newPositionY = lerp(this._position.y, top, 0.6);
+    // }
 
     this._position.set(newPositionX, newPositionY);
   }
@@ -219,7 +226,7 @@ export default class BlobGLTF {
       }
     });
 
-    this._scene.add(this._model);
+    this._parent.add(this._model);
     console.log(this._model);
   }
 
@@ -229,9 +236,18 @@ export default class BlobGLTF {
     }
 
     this._getDimensions();
-    this._model.position.set(this._position.x * 0.8, this._position.y, 200);
-    const scaleValue = this._size.x * (1 / this._sizeGeometry.x);
-    this._model.scale.set(scaleValue * 1.7, scaleValue * 1.7, scaleValue * 1.7);
+    this._model.position.set(
+      this._position.x * 0.8,
+      this._position.y * 0.8,
+      200
+    );
+    const scaleValueX = this._size.x * (1 / this._sizeGeometry.x);
+    const scaleValueY = this._size.y * (1 / this._sizeGeometry.y);
+    this._model.scale.set(
+      scaleValueX * 1.7,
+      scaleValueY * 1.7,
+      scaleValueX * 1.7
+    );
 
     this._uniforms.uTime.value = 0.00025 * (Date.now() - this._start);
 
