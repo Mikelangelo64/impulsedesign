@@ -177,6 +177,13 @@ module.exports = {
         generator: {
           filename: './assets/video/[name][ext]'
         }
+      },
+      {
+        test: /\.glb$/,
+        type: 'asset/resource',
+        generator: {
+          filename: './assets/models/[name][ext]'
+        }
       }
     ]
   }

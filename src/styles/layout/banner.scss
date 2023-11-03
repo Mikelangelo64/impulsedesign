@@ -331,7 +331,7 @@
   //.banner__glob 
   &__glob {
     width: 100%;
-    opacity: 0;
+    opacity: 0.4;
 
     @include viewport-tablet-min {
       position: absolute;

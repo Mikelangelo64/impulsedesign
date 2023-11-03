@@ -5,8 +5,8 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
-import Blob from './Blob';
 import debounce from '../config/debounce';
+import BlobGLTF from './BlobGLTF';
 // import { useDatGUISettings } from './gui/useDatGUISettings';
 
 interface ILight {
@@ -55,7 +55,7 @@ export class Sketch {
 
   private _renderer: THREE.WebGLRenderer | undefined;
 
-  private _meshItems: Blob[];
+  private _meshItems: BlobGLTF[];
 
   private _parent: THREE.Object3D;
 
@@ -403,7 +403,7 @@ export class Sketch {
       return;
     }
 
-    const mesh = new Blob(
+    const mesh = new BlobGLTF(
       this._scene,
       0,
       this._meshActionDomArray,

@@ -1,3 +1,4 @@
+declare module '*.glb';
 declare module '*.glsl';
 
 declare module '*.png' {

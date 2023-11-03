@@ -117,7 +117,7 @@ export default class Blob {
   private async _createMesh() {
     // const ratioSize = this._action.dom.getBoundingClientRect().width / 100;
 
-    const geometry = new THREE.IcosahedronGeometry(this._sizeGeometry, 50);
+    const geometry = new THREE.IcosahedronGeometry(this._sizeGeometry, 100);
     const geometryHover = new THREE.IcosahedronGeometry(this._sizeGeometry, 0);
 
     const scaleValue = this._size.x * (1 / this._sizeGeometry);
