@@ -116,8 +116,13 @@ export default class Blob {
 
   private async _createMesh() {
     // const ratioSize = this._action.dom.getBoundingClientRect().width / 100;
+    let detail = 26;
 
-    const geometry = new THREE.IcosahedronGeometry(this._sizeGeometry, 26);
+    if (vevet.viewport.isDesktop) {
+      detail = 50;
+    }
+
+    const geometry = new THREE.IcosahedronGeometry(this._sizeGeometry, detail);
     const geometryHover = new THREE.IcosahedronGeometry(this._sizeGeometry, 0);
 
     const scaleValue = this._size.x * (1 / this._sizeGeometry);
@@ -319,7 +324,7 @@ export default class Blob {
         return;
       }
 
-      this._uniforms.uAlpha.value = Math.max(1 - easing, 0.4);
+      this._uniforms.uAlpha.value = Math.max(1 - easing, 0);
     });
 
     const desktopDom = this._action.domArray.find((item) =>
@@ -333,15 +338,38 @@ export default class Blob {
       return;
     }
 
-    desktopDom.addEventListener('mouseover', () => {
+    if (vevet.isMobile) {
+      const clickListener = () => {
+        if (this._action.isHover === true) {
+          this._action.isHover = false;
+          timeline.reverse();
+          return;
+        }
+
+        this._action.isHover = true;
+        timeline.play();
+      };
+
+      desktopDom.addEventListener('click', clickListener);
+      mobileDom.addEventListener('click', clickListener);
+      return;
+    }
+
+    const mouseoverListener = () => {
       this._action.isHover = true;
       timeline.play();
-    });
+    };
 
-    desktopDom.addEventListener('mouseout', () => {
+    const mouseoutListener = () => {
       this._action.isHover = false;
       timeline.reverse();
-    });
+    };
+
+    desktopDom.addEventListener('mouseover', mouseoverListener);
+    desktopDom.addEventListener('mouseout', mouseoutListener);
+
+    mobileDom.addEventListener('mouseover', mouseoverListener);
+    mobileDom.addEventListener('mouseout', mouseoutListener);
   }
 
   render(mouseCoordinates: THREE.Vector2) {
@@ -371,20 +399,21 @@ export default class Blob {
 
     // this._mesh.rotation.y += 0.01 + 0.1 * (1 - this._uniforms.uAlpha.value);
     this._mesh.rotation.y += 0.01;
+    this._meshHover.rotation.y -= 0.01 + 0.01 * this._uniforms.uAlpha.value;
     const scaleValue = this._size.x * (1 / this._sizeGeometry);
 
-    this._mesh.scale.set(scaleValue, scaleValue, scaleValue);
+    // this._mesh.scale.set(scaleValue, scaleValue, scaleValue);
 
-    // this._mesh.scale.set(
-    //   scaleValue * this._uniforms.uAlpha.value,
-    //   scaleValue * this._uniforms.uAlpha.value,
-    //   scaleValue * this._uniforms.uAlpha.value
-    // );
+    this._mesh.scale.set(
+      scaleValue * this._uniforms.uAlpha.value,
+      scaleValue * this._uniforms.uAlpha.value,
+      scaleValue * this._uniforms.uAlpha.value
+    );
 
-    // this._meshHover.scale.set(
-    //   scaleValue * (1 - this._uniforms.uAlpha.value) * 0.7,
-    //   scaleValue * (1 - this._uniforms.uAlpha.value) * 0.7,
-    //   scaleValue * (1 - this._uniforms.uAlpha.value) * 0.7
-    // );
+    this._meshHover.scale.set(
+      scaleValue * (1 - this._uniforms.uAlpha.value) * 0.7,
+      scaleValue * (1 - this._uniforms.uAlpha.value) * 0.7,
+      scaleValue * (1 - this._uniforms.uAlpha.value) * 0.7
+    );
   }
 }

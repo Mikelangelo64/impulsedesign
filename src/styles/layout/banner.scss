@@ -331,7 +331,7 @@
   //.banner__glob 
   &__glob {
     width: 100%;
-    opacity: 0.4;
+    opacity: 0;
 
     @include viewport-tablet-min {
       position: absolute;
@@ -387,6 +387,7 @@
     img {
       width: 100%;
       height: auto;
+      pointer-events: none;
     }
   }
   

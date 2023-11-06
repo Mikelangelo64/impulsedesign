@@ -6,7 +6,6 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import debounce from '../config/debounce';
-import BlobGLTF from './BlobGLTF';
 import vevet from '../config/vevet';
 import Blob from './Blob';
 // import Blob from './Blob';
