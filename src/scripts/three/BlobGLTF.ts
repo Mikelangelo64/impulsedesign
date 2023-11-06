@@ -5,14 +5,20 @@ import vertexMain from '@/glsl/blob/vertex_main.glsl';
 import fragmentMain from '@/glsl/blob/fragment_main.glsl';
 import fragmentPars from '@/glsl/blob/fragment_pars.glsl';
 import { lerp } from '../config/lerp';
-import path from '@/assets/models/model-1.glb';
+import path from '@/assets/models/glob-sketch.glb';
 import vevet from '../config/vevet';
+import { utils } from 'vevet';
 
 interface IMaterialSettings {
   shininess: number;
   color: number | string;
   specular: number | string;
   emissive: number | string;
+}
+
+interface IAnimatinCollection {
+  action: THREE.AnimationAction;
+  clip: THREE.AnimationClip;
 }
 
 export default class BlobGLTF {
@@ -56,12 +62,21 @@ export default class BlobGLTF {
 
   private _parent: THREE.Object3D;
 
+  private _mixer: THREE.AnimationMixer | undefined;
+
+  private _animationCollection: IAnimatinCollection[];
+
+  private _counter: number;
+
+  private _clock: THREE.Clock;
+
   constructor(
     scene: THREE.Scene,
     index: number,
     actionDomArray: HTMLElement[],
     parent: THREE.Object3D
   ) {
+    this._clock = new THREE.Clock();
     this._path = path;
     this._action = {
       domArray: actionDomArray,
@@ -76,6 +91,9 @@ export default class BlobGLTF {
     this._position = new THREE.Vector2(0, 0);
     this._size = new THREE.Vector2(0, 0);
     this._sizeGeometry = new THREE.Vector3(1, 1, 1);
+
+    this._animationCollection = [];
+    this._counter = 0;
 
     this._getDimensions();
     this._createMesh();
@@ -142,11 +160,8 @@ export default class BlobGLTF {
     const gltf = await this._loadGLTF();
     this._model = gltf.scene;
 
-    const { animations } = gltf;
-
     const box = new THREE.Box3().setFromObject(this._model);
-    const sizes = box.getSize(this._sizeGeometry);
-    console.log(sizes, this._sizeGeometry);
+    box.getSize(this._sizeGeometry);
 
     const scaleValue = this._size.x * (1 / this._sizeGeometry.x);
     this._model.position.set(this._position.x, this._position.y, 1);
@@ -165,69 +180,39 @@ export default class BlobGLTF {
       emissive: '#37200d'
     };
 
+    const { animations } = gltf;
     const mixer = new THREE.AnimationMixer(gltf.scene);
-    console.log(mixer, animations);
 
-    this._model.traverse((child) => {
-      // if (child.type === 'Mesh') {
-      // console.log(child);
+    // const globClip = THREE.AnimationClip.findByName(animations, 'KeyAction');
+    // const globAction = mixer.clipAction(globClip);
+    // globAction.play();
 
-      const mesh = child as THREE.Mesh;
+    const autoAnimations = ['KeyAction'];
+    const animationCollection = animations
+      .filter((item) => autoAnimations.includes(item.name))
+      .map((clip) => {
+        const action = mixer.clipAction(clip);
+        action.play();
+        console.log(clip.duration);
 
-      const material = new THREE.MeshPhongMaterial({
-        shininess: settings.shininess,
-        color: settings.color,
-        specular: settings.specular,
-        emissive: settings.emissive,
-
-        // @ts-ignore
-        onBeforeCompile: (shader: THREE.Shader) => {
-          if (!this._uniforms) {
-            return;
-          }
-
-          // storing shader that has already exist
-          material.userData.shader = shader;
-
-          // uniforms
-          /* eslint-disable */
-          shader.uniforms.uTime = this._uniforms.uTime;
-          shader.uniforms.uAlpha = this._uniforms.uAlpha;
-          shader.uniforms.uScale = this._uniforms.uScale;
-
-          // const parsVertexString = `#include <displacementmap_pars_vertex>`;
-          // shader.vertexShader = shader.vertexShader.replace(
-          //   parsVertexString,
-          //   `${parsVertexString}\n${vertexPars}`
-          // );
-
-          // const mainVertexString = `#include <displacementmap_vertex>`;
-          // shader.vertexShader = shader.vertexShader.replace(
-          //   mainVertexString,
-          //   `${mainVertexString}\n${vertexMain}`
-          // );
-
-          // const parsFragmentString = `#include <bumpmap_pars_fragment>`;
-          // shader.fragmentShader = shader.fragmentShader.replace(
-          //   parsFragmentString,
-          //   `${parsFragmentString}\n${fragmentPars}`
-          // );
-
-          // const mainFragmentString = `#include <normal_fragment_maps>`;
-          // shader.fragmentShader = shader.fragmentShader.replace(
-          //   mainFragmentString,
-          //   `${mainFragmentString}\n${fragmentMain}`
-          // );
-          /* eslint-enable */
-
-          // console.log(shader.fragmentShader);
-        }
+        return {
+          action,
+          clip
+        };
       });
 
-      mesh.material = material;
+    this._mixer = mixer;
+    this._animationCollection = animationCollection;
 
-      if (child.name === 'Cube001') {
-        const materialCube = new THREE.MeshPhongMaterial({
+    // console.log(globClip.duration);
+
+    this._model.traverse((child) => {
+      if (child.type === 'Mesh') {
+        // console.log(child);
+
+        const mesh = child as THREE.Mesh;
+
+        const material = new THREE.MeshPhongMaterial({
           shininess: settings.shininess,
           color: settings.color,
           specular: settings.specular,
@@ -277,22 +262,96 @@ export default class BlobGLTF {
           }
         });
 
-        mesh.material = materialCube;
-      }
-      // mesh.geometry = geometry;
+        mesh.material = material;
 
-      // child.scale.set(sizes.x * 0.01, sizes.y * 0.01, sizes.z * 0.1);
-      // }
+        // if (child.name === 'Cube001') {
+        //   const materialCube = new THREE.MeshPhongMaterial({
+        //     shininess: settings.shininess,
+        //     color: settings.color,
+        //     specular: settings.specular,
+        //     emissive: settings.emissive,
+
+        //     // @ts-ignore
+        //     onBeforeCompile: (shader: THREE.Shader) => {
+        //       if (!this._uniforms) {
+        //         return;
+        //       }
+
+        //       // storing shader that has already exist
+        //       material.userData.shader = shader;
+
+        //       // uniforms
+        //       /* eslint-disable */
+        //       shader.uniforms.uTime = this._uniforms.uTime;
+        //       shader.uniforms.uAlpha = this._uniforms.uAlpha;
+        //       shader.uniforms.uScale = this._uniforms.uScale;
+
+        //       const parsVertexString = `#include <displacementmap_pars_vertex>`;
+        //       shader.vertexShader = shader.vertexShader.replace(
+        //         parsVertexString,
+        //         `${parsVertexString}\n${vertexPars}`
+        //       );
+
+        //       const mainVertexString = `#include <displacementmap_vertex>`;
+        //       shader.vertexShader = shader.vertexShader.replace(
+        //         mainVertexString,
+        //         `${mainVertexString}\n${vertexMain}`
+        //       );
+
+        //       const parsFragmentString = `#include <bumpmap_pars_fragment>`;
+        //       shader.fragmentShader = shader.fragmentShader.replace(
+        //         parsFragmentString,
+        //         `${parsFragmentString}\n${fragmentPars}`
+        //       );
+
+        //       const mainFragmentString = `#include <normal_fragment_maps>`;
+        //       shader.fragmentShader = shader.fragmentShader.replace(
+        //         mainFragmentString,
+        //         `${mainFragmentString}\n${fragmentMain}`
+        //       );
+        //       /* eslint-enable */
+
+        //       // console.log(shader.fragmentShader);
+        //     }
+        //   });
+
+        //   mesh.material = materialCube;
+        // }
+
+        // child.scale.set(sizes.x * 0.01, sizes.y * 0.01, sizes.z * 0.1);
+      }
     });
 
     this._parent.add(this._model);
-    console.log(this._model);
+    // console.log(this._model);
   }
 
   render(mouseCoordinates: THREE.Vector2) {
     if (!this._model || !this._uniforms) {
       return;
     }
+
+    this._counter += 0.01;
+
+    // if (this._mixer) {
+    //   const currentTime = (+new Date() - this._start) / 1000;
+    //   // let time = 0;
+
+    //   this._animationCollection.forEach((item) => {
+    //     const { clip, action } = item;
+
+    //     const time =
+    //       Math.floor(
+    //         (utils.math.wrap(0, clip.duration, currentTime) as number) * 100
+    //       ) / 100;
+
+    //     action.time = time;
+
+    //     // time = action.time;
+    //     console.log(action.time);
+    //   });
+    //   this._mixer.update(0);
+    // }
 
     this._getDimensions();
     this._model.position.set(
