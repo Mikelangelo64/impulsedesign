@@ -5,7 +5,7 @@ import vertexMain from '@/glsl/blob/vertex_main.glsl';
 import fragmentMain from '@/glsl/blob/fragment_main.glsl';
 import fragmentPars from '@/glsl/blob/fragment_pars.glsl';
 import { lerp } from '../config/lerp';
-import path from '@/assets/models/glob-sketch.glb';
+import path from '@/assets/models/glob-2.0.glb';
 import vevet from '../config/vevet';
 import { utils } from 'vevet';
 
@@ -229,33 +229,33 @@ export default class BlobGLTF {
 
             // uniforms
             /* eslint-disable */
-            shader.uniforms.uTime = this._uniforms.uTime;
-            shader.uniforms.uAlpha = this._uniforms.uAlpha;
-            shader.uniforms.uScale = this._uniforms.uScale;
+            // shader.uniforms.uTime = this._uniforms.uTime;
+            // shader.uniforms.uAlpha = this._uniforms.uAlpha;
+            // shader.uniforms.uScale = this._uniforms.uScale;
 
-            const parsVertexString = `#include <displacementmap_pars_vertex>`;
-            shader.vertexShader = shader.vertexShader.replace(
-              parsVertexString,
-              `${parsVertexString}\n${vertexPars}`
-            );
+            // const parsVertexString = `#include <displacementmap_pars_vertex>`;
+            // shader.vertexShader = shader.vertexShader.replace(
+            //   parsVertexString,
+            //   `${parsVertexString}\n${vertexPars}`
+            // );
 
-            const mainVertexString = `#include <displacementmap_vertex>`;
-            shader.vertexShader = shader.vertexShader.replace(
-              mainVertexString,
-              `${mainVertexString}\n${vertexMain}`
-            );
+            // const mainVertexString = `#include <displacementmap_vertex>`;
+            // shader.vertexShader = shader.vertexShader.replace(
+            //   mainVertexString,
+            //   `${mainVertexString}\n${vertexMain}`
+            // );
 
-            const parsFragmentString = `#include <bumpmap_pars_fragment>`;
-            shader.fragmentShader = shader.fragmentShader.replace(
-              parsFragmentString,
-              `${parsFragmentString}\n${fragmentPars}`
-            );
+            // const parsFragmentString = `#include <bumpmap_pars_fragment>`;
+            // shader.fragmentShader = shader.fragmentShader.replace(
+            //   parsFragmentString,
+            //   `${parsFragmentString}\n${fragmentPars}`
+            // );
 
-            const mainFragmentString = `#include <normal_fragment_maps>`;
-            shader.fragmentShader = shader.fragmentShader.replace(
-              mainFragmentString,
-              `${mainFragmentString}\n${fragmentMain}`
-            );
+            // const mainFragmentString = `#include <normal_fragment_maps>`;
+            // shader.fragmentShader = shader.fragmentShader.replace(
+            //   mainFragmentString,
+            //   `${mainFragmentString}\n${fragmentMain}`
+            // );
             /* eslint-enable */
 
             // console.log(shader.fragmentShader);
@@ -333,25 +333,25 @@ export default class BlobGLTF {
 
     this._counter += 0.01;
 
-    // if (this._mixer) {
-    //   const currentTime = (+new Date() - this._start) / 1000;
-    //   // let time = 0;
+    if (this._mixer) {
+      const currentTime = (+new Date() - this._start) / 1000;
+      // let time = 0;
 
-    //   this._animationCollection.forEach((item) => {
-    //     const { clip, action } = item;
+      this._animationCollection.forEach((item) => {
+        const { clip, action } = item;
 
-    //     const time =
-    //       Math.floor(
-    //         (utils.math.wrap(0, clip.duration, currentTime) as number) * 100
-    //       ) / 100;
+        const time =
+          Math.floor(
+            (utils.math.wrap(0, clip.duration, currentTime) as number) * 100
+          ) / 100;
 
-    //     action.time = time;
+        action.time = time;
 
-    //     // time = action.time;
-    //     console.log(action.time);
-    //   });
-    //   this._mixer.update(0);
-    // }
+        // time = action.time;
+        console.log(action.time);
+      });
+      this._mixer.update(0);
+    }
 
     this._getDimensions();
     this._model.position.set(
@@ -371,7 +371,7 @@ export default class BlobGLTF {
 
     // console.log(this._mesh.rotation.x);
 
-    this._model.rotation.y += 0.01;
+    // this._model.rotation.y += 0.01;
     // this._mesh.rotation.y += 0.01;
     // this._mesh.position.x += 10;
   }

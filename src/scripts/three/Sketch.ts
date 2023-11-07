@@ -8,7 +8,6 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import debounce from '../config/debounce';
 import vevet from '../config/vevet';
 import Blob from './Blob';
-// import Blob from './Blob';
 // import { AnimationFrame, utils } from 'vevet';
 // import { useDatGUISettings } from './gui/useDatGUISettings';
 

@@ -94,6 +94,10 @@
         @media (min-width: 1601px) {
           margin-top: px-to-rem(112);
         }
+        
+        @media (max-height: 768px) {
+          margin-top: px-to-rem(70);
+        }
       }
 
       @include viewport-phone {
@@ -256,6 +260,28 @@
                 max-width: px-to-rem(28);
                 height: px-to-rem(28);
               }
+            }
+          }
+
+          .blinked {
+            animation-name: blink-path;
+            animation-timing-function: steps(1, end);
+            animation-duration: 0.8s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+          }
+
+          @keyframes blink-path {
+            0% {
+              opacity: 0;
+            }
+
+            50% {
+              opacity: 1;
+            }
+
+            100% {
+              opacity: 0;
             }
           }
         }
@@ -426,6 +452,10 @@
 
     @include viewport-tablet-min {
       margin-top: calc(-0.25 * var(--button-size));
+      
+      @media (max-height: 768px) {
+        margin-top: calc(-0.75 * var(--button-size));
+      }
     }
 
     @include viewport-phone {

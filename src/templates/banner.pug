@@ -59,21 +59,30 @@ section.banner(data-animate='clip-path')
             span.labeled
               span.labeled__label
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M28.334 28.3333L36.6673 20L28.334 11.6667M11.6673 11.6667L3.33398 20L11.6673 28.3333M23.334 5L16.6673 35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class='blinked' d="M 23.334 5 L 16.667 35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M 11.873 11.647 L 3.308 19.919 L 11.776 28.387" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M 28.321 11.679 L 37.08 20.049 L 28.418 28.613" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
+                //- <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                //-   <path d="M28.334 28.3333L36.6673 20L28.334 11.6667M11.6673 11.6667L3.33398 20L11.6673 28.3333M23.334 5L16.6673 35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                //- </svg>
               span сайтів
 
           p.banner__subtitle= 'Створимо кращий сайт у вашій ніші, забезпечимо нескінченний потік клієнтів'
 
         .banner__actions
-          button.banner__button.button-dark.popup-open(
+          button.banner__button.button-dark.button-arrow.popup-open(
             data-popup='_popup-form'
           )
             span Обговорити проект
 
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            span.button-arrow__label
+              <svg class="button-arrow__svg showed" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <svg class="button-arrow__svg hovered" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
 
           .banner__glob.glob.mobile
             img(src=require('@/assets/img/main-section/glob.png'), alt='glob')
