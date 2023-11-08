@@ -1,0 +1,56 @@
+-
+  const servicesList = [
+    {
+      title: 'Розробка сайтів',
+      description: `
+        Сайти будь-якої складності – ексклюзивні веб-сайти з неймовірно високою <span>конверсією до 35%</span> та всього за 29 днів!
+      `,
+      href: '#',
+    },
+    {
+      title: 'Просування сайтів',
+      description: `
+        Рекламуємо сайти на всіх інтернет майданчиках, аналізуємо конверсії та відбираємо лише <span>ефективні джерела.</span>
+      `,
+      href: '#',
+    },
+    {
+      title: 'Інші послуги',
+      description: `
+        Задіємо комплекс заходів для вашого сайту, що дає вам переваги і значно <span>виділяє його серед конкурентів</span>.
+      `,
+      href: '#',
+    },
+  ];
+
+section.light.services
+  ._container
+    .services__wrapper
+      .services__header.section-header
+        .section-header__item
+          h2.section-header__title Як ми <span>розвиваємо</span> ваш бізнес
+
+          p.section-header__description Ми надаємо весь спектр digital-послуг, щоб розвивати ваш бізнес та досягати <span>WOW-результатів</span>
+
+      ul.services-list
+        each item, index in servicesList
+          li.services-list-item
+            .services-list-item__container
+              .services-list__main
+                p.services-list__counter= `0${index + 1}`
+
+                h3.services-list__title= item.title
+
+                p.services-list__description!= item.description
+
+              a.services-list-link(href=`${item.href}`)
+                span.services-list-link__label
+                  img.showed(
+                    src=require('@/assets/img/arrow-services.svg'),
+                    alt=`${item.title}`
+                  )
+
+                  img.hovered(
+                    src=require('@/assets/img/arrow-services.svg'),
+                    alt=`${item.title}`
+                  )
